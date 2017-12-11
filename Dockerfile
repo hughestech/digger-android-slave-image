@@ -43,14 +43,29 @@ RUN yum install -y \
   yum groupinstall -y "Development Tools"
 
 #install nvm and nodejs
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh | bash && \
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
-    echo 'export NVM_DIR=${NVM_DIR}' >> ${HOME}/.bashrc && \
-    echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ${HOME}/.bashrc && \
-    echo 'CI=Y' >> ${HOME}/.bashrc && \
-    nvm install ${NODEJS_DEFAULT_VERSION} && \
-    chmod -R 777 ${NVM_DIR} && \
-    npm install -g cordova@${CORDOVA_DEFAULT_VERSION} && \
+
+# nvm environment variables
+ENV NVM_DIR /usr/local/nvm
+
+
+# install nvm
+# https://github.com/creationix/nvm#install-script
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+
+# install node and npm
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODEJS_DEFAULT_VERSION \
+    && nvm alias default $NODEJS_DEFAULT_VERSION \
+    && nvm use default
+
+# add node and npm to path so the commands are available
+ENV NODE_PATH $NVM_DIR/v$NODEJS_DEFAULT_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODEJS_DEFAULT_VERSION/bin:$PATH
+
+
+
+
+RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION} && \
     gem install fastlane -v ${FASTLANE_DEFAULT_VERSION} && \
     npm install -g grunt@${GRUNT_DEFAULT_VERSION}
 
