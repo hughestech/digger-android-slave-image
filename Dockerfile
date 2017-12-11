@@ -5,7 +5,7 @@ MAINTAINER AeroGear Team <https://aerogear.org/>
 #env vars
 ENV ANDROID_SLAVE_SDK_BUILDER=1.0.0 \
     NODEJS_DEFAULT_VERSION=6.9.1 \
-    CORDOVA_DEFAULT_VERSION=7.0.1 \
+    CORDOVA_DEFAULT_VERSION=7.1.0 \
     GRUNT_DEFAULT_VERSION=1.0.1 \
     FASTLANE_DEFAULT_VERSION=2.68.2 \
     GRADLE_VERSION=3.5 \
@@ -65,9 +65,10 @@ ENV PATH $NVM_DIR/versions/node/v$NODEJS_DEFAULT_VERSION/bin:$PATH
 
 
 
-RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION} && \
-    gem install fastlane -v ${FASTLANE_DEFAULT_VERSION} && \
-    npm install -g grunt@${GRUNT_DEFAULT_VERSION}
+RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION}
+RUN npm install -g grunt@${GRUNT_DEFAULT_VERSION}
+RUN gem install fastlane -v ${FASTLANE_DEFAULT_VERSION}
+    
 
 
 
