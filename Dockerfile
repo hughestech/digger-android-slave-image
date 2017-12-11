@@ -43,7 +43,7 @@ RUN yum install -y \
   yum groupinstall -y "Development Tools"
 
 #install nvm and nodejs
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh | bash && \
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
     echo 'export NVM_DIR=${NVM_DIR}' >> ${HOME}/.bashrc && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ${HOME}/.bashrc && \
