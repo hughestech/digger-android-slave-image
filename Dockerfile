@@ -68,19 +68,16 @@ ENV PATH $NVM_DIR/versions/node/v$NODEJS_DEFAULT_VERSION/bin:$PATH
 RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION} && \
     npm install -g grunt@${GRUNT_DEFAULT_VERSION}  && \
     gem install bundler && gem install rubygems-update && \
-    update_rubygems && gem install jwt -v 1.5.6 && gem install fastlane -NV --verbose
-    
-
-
+    update_rubygems && gem install jwt -v 1.5.6 && gem install fastlane -NV --verbose && \
 
 #install gradle
-RUN mkdir -p /opt/gradle && \
+    mkdir -p /opt/gradle && \
     wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
     unzip -d /opt/gradle gradle-${GRADLE_VERSION}-bin.zip && \
-    rm gradle-${GRADLE_VERSION}-bin.zip
+    rm gradle-${GRADLE_VERSION}-bin.zip && \
 
 #install jq
-RUN wget -O jq  https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && \
+    wget -O jq  https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && \
     chmod +x ./jq &&\
     cp jq /usr/bin
 
