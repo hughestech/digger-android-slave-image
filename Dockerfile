@@ -44,9 +44,6 @@ RUN yum install -y \
 
 #install nvm and nodejs
 
-# nvm environment variables
-ENV NVM_DIR /usr/local/nvm
-
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
