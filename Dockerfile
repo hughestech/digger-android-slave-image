@@ -67,7 +67,8 @@ ENV PATH $NVM_DIR/versions/node/v$NODEJS_DEFAULT_VERSION/bin:$PATH
 
 RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION} && \
     npm install -g grunt@${GRUNT_DEFAULT_VERSION}  && \
-    gem install rubygems-update && update_rubygems && gem install jwt -v 1.5.6 && gem install fastlane -NV --verbose
+    gem install bundler && gem install rubygems-update && \
+    update_rubygems && gem install jwt -v 1.5.6 && gem install fastlane -NV --verbose
     
 
 
