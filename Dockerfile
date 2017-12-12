@@ -67,7 +67,7 @@ ENV PATH $NVM_DIR/versions/node/v$NODEJS_DEFAULT_VERSION/bin:$PATH
 
 RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION}
 RUN npm install -g grunt@${GRUNT_DEFAULT_VERSION}
-RUN gem install fastlane -NV
+RUN gem install fastlane -NV --verbose
     
 
 
