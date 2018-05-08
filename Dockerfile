@@ -7,7 +7,7 @@ ENV ANDROID_SLAVE_SDK_BUILDER=1.0.0 \
     NODEJS_DEFAULT_VERSION=6.9.1 \
     CORDOVA_DEFAULT_VERSION=7.1.0 \
     GRUNT_DEFAULT_VERSION=1.0.1 \
-    FASTLANE_DEFAULT_VERSION=2.69.2 \
+    FASTLANE_DEFAULT_VERSION=2.94.0 \
     GRADLE_VERSION=4.4 \
     ANDROID_HOME=/opt/android-sdk-linux \
     NVM_DIR=/opt/nvm \
@@ -88,13 +88,13 @@ RUN mkdir -p $HOME/.android && \
     # it will be there once the android-sdk volume is mounted (later in OpenShift).
     # the good thing about symlinks are that they can be created even when the source doesn't exist.
     # when the source becomes existent, it will just work.
-    ln -s $ANDROID_HOME/android.debug $HOME/.android/debug.keystore && \
-    chown -R 1001:0 $HOME && \
-    chmod -R g+rw $HOME
+    ln -s $ANDROID_HOME/android.debug $HOME/.android/debug.keystore
+    #&& chown -R 1001:0 $HOME && \
+    #chmod -R g+rw $HOME
 
 COPY scripts/run-jnlp.sh /usr/local/bin/run-jnlp.sh
 
-USER 1001
+USER root
 WORKDIR /tmp
 
 ENTRYPOINT ["/usr/local/bin/run-jnlp.sh"]
