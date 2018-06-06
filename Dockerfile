@@ -69,6 +69,7 @@ RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION} && \
     npm install -g react-addons-test-utils && \
     npm install -g react-native-swipe-cards && \
     npm install -g query-string  && \
+    npm install -g redux-logger  && \
     gem install bundler && gem install rubygems-update && \
     update_rubygems && gem install jwt -v 1.5.6 && gem install fastlane -NV --verbose && \
 
