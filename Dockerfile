@@ -94,8 +94,8 @@ RUN mkdir -p $HOME/.android && \
     # it will be there once the android-sdk volume is mounted (later in OpenShift).
     # the good thing about symlinks are that they can be created even when the source doesn't exist.
     # when the source becomes existent, it will just work.
-    ln -s $ANDROID_HOME/android.debug $HOME/.android/debug.keystore
-    && chown -R 1001:0 $HOME && \
+    ln -s $ANDROID_HOME/android.debug $HOME/.android/debug.keystore  && \
+    chown -R 1001:0 $HOME && \
     chmod -R g+rw $HOME
 
 COPY scripts/run-jnlp.sh /usr/local/bin/run-jnlp.sh
