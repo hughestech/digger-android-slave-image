@@ -43,12 +43,7 @@ RUN yum install -y \
   expect && \
   yum groupinstall -y "Development Tools"
   
-RUN wget https://rvm.io/binaries/centos/7/x86_64/ruby-${RUBY_VERSION}.tar.bz2 && \
-bunzip2 -dk ruby-${RUBY_VERSION}.tar.bz2 && \
-tar -xvpf ruby-${RUBY_VERSION}.tar && \
-(cd ruby-${RUBY_VERSION}; cp -R * /usr/local) && \
-gem install fastlane -v ${FASTLANE_DEFAULT_VERSION} --no-rdoc --no-ri && \
-rm -rf ruby-${RUBY_VERSION}.tar.bz2 ruby-${RUBY_VERSION}.tar ruby-${RUBY_VERSION}
+
 
 #install nvm and nodejs
 
