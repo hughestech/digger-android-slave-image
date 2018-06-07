@@ -14,7 +14,8 @@ ENV ANDROID_SLAVE_SDK_BUILDER=1.0.0 \
     PROFILE=/etc/profile \
     CI=Y \
     BASH_ENV=/etc/profile \
-    JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
+    JAVA_HOME=/etc/alternatives/java_sdk_1.8.0 \
+    RUBY_VERSION=2.4.2
 
 #update PATH env var
 ENV PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NVM_DIR:/opt/gradle/gradle-$GRADLE_VERSION/bin
@@ -41,6 +42,13 @@ RUN yum install -y \
   wget \
   expect && \
   yum groupinstall -y "Development Tools"
+  
+RUN wget https://rvm.io/binaries/centos/7/x86_64/ruby-${RUBY_VERSION}.tar.bz2 && \
+bunzip2 -dk ruby-${RUBY_VERSION}.tar.bz2 && \
+tar -xvpf ruby-${RUBY_VERSION}.tar && \
+(cd ruby-${RUBY_VERSION}; cp -R * /usr/local) && \
+gem install fastlane -v ${FASTLANE_DEFAULT_VERSION} --no-rdoc --no-ri && \
+rm -rf ruby-${RUBY_VERSION}.tar.bz2 ruby-${RUBY_VERSION}.tar ruby-${RUBY_VERSION}
 
 #install nvm and nodejs
 
@@ -95,12 +103,11 @@ RUN mkdir -p $HOME/.android && \
     # the good thing about symlinks are that they can be created even when the source doesn't exist.
     # when the source becomes existent, it will just work.
     ln -s $ANDROID_HOME/android.debug $HOME/.android/debug.keystore
-    #&& chown -R 1001:0 $HOME && \
-    #chmod -R g+rw $HOME
+    chown -R 1001:0 $HOME && \
+    chmod -R g+rw $HOME
 
 COPY scripts/run-jnlp.sh /usr/local/bin/run-jnlp.sh
-
-USER root
+USER 1001
 WORKDIR /tmp
 
 ENTRYPOINT ["/usr/local/bin/run-jnlp.sh"]
