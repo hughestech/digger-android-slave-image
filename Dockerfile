@@ -71,6 +71,7 @@ RUN npm install -g cordova@${CORDOVA_DEFAULT_VERSION} && \
     npm install -g query-string  && \
     npm install -g redux-logger  && \
     npm install -g react  && \
+    npm install -g yarn && \
     gem install bundler && gem install rubygems-update && \
     update_rubygems && gem install jwt -v 1.5.6 && gem install fastlane -NV --verbose && \
 
