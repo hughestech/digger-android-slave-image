@@ -28,7 +28,7 @@ RUN yum remove -y zlib.i686
 RUN yum install -y \
   zlib.i686 \
   ncurses-libs.i686 \
-  bzip2-libs.i686 \
+  #bzip2-libs.i686 \
   java-1.8.0-openjdk-devel \
   java-1.8.0-openjdk \
   nodejs \
