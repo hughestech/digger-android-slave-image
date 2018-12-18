@@ -26,7 +26,7 @@ LABEL io.k8s.description="Platform for building slave android sdk image" \
 #system pakcages
 RUN yum remove -y zlib.i686
 RUN yum install -y \
-  zlib.i686 \
+  zlib.i686 --exclude zlib.otherarch \
   ncurses-libs.i686 \
   #bzip2-libs.i686 \
   java-1.8.0-openjdk-devel \
