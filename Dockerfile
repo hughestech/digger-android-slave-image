@@ -24,23 +24,23 @@ LABEL io.k8s.description="Platform for building slave android sdk image" \
       io.openshift.tags="jenkins-android-slave builder"
 
 #system pakcages
-RUN yum remove zlib -y && yum install -y \
+RUN yum install -y \
   zlib.i686 \
   ncurses-libs.i686 \
   bzip2-libs.i686 \
   java-1.8.0-openjdk-devel \
   java-1.8.0-openjdk \
-  ruby \
-  rubygems \
-  ruby-devel \
   nodejs \
+  rubygems \
   gcc-c++ \
   make \
   ant \
   which\
   wget \
-  expect && \
-  yum groupinstall -y "Development Tools"
+  expect \
+  yum groupinstall -y "Development Tools" && \
+  yum clean all && \
+  rm -rf /var/cache/yum
 
 #install nvm and nodejs
 
