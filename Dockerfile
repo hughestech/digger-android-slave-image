@@ -44,8 +44,7 @@ RUN yum install -y \
   yum update && \
   yun install -y rh-ruby25 && \
   yum clean all && \
-  rm -rf /var/cache/yum && \
-  scl enable rh-ruby25 bash
+  rm -rf /var/cache/yum
 
 #install nvm and nodejs
 
