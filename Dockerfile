@@ -26,6 +26,7 @@ LABEL io.k8s.description="Platform for building slave android sdk image" \
 #system pakcages
 RUN yum remove -y zlib.i686
 RUN yum install -y \
+  centos-release-scl \
   #zlib.i686 --exclude zlib.otherarch \
   ncurses-libs.i686 \
   #bzip2-libs.i686 \
@@ -40,8 +41,11 @@ RUN yum install -y \
   wget \
   expect \
   yum groupinstall -y "Development Tools" && \
+  yum update && \
+  yun install -y rh-ruby25 && \
   yum clean all && \
-  rm -rf /var/cache/yum
+  rm -rf /var/cache/yum && \
+  scl enable rh-ruby25 bash
 
 #install nvm and nodejs
 
