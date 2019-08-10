@@ -50,7 +50,7 @@ RUN echo "Starting Installation..."
 RUN yum install  -y  gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel ruby-devel libxml2 libxml2-devel libxslt libxslt-devel git
 
 # Install Ruby from rvm
-RUN \curl -sSL https://get.rvm.io | bash -s stable --ruby
+RUN curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 #Enable rvm in current shell
 RUN source /usr/local/rvm/scripts/rvm
