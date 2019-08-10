@@ -42,7 +42,7 @@ RUN yum install -y \
   expect \
   yum groupinstall -y "Development Tools" && \
   yum update -y && \
-  yun install -y rh-ruby25 && \
+  yum install -y rh-ruby25 && \
   yum clean all && \
   rm -rf /var/cache/yum
 
