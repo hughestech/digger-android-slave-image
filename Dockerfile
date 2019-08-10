@@ -14,7 +14,13 @@ ENV ANDROID_SLAVE_SDK_BUILDER=1.0.0 \
     PROFILE=/etc/profile \
     CI=Y \
     BASH_ENV=/etc/profile \
-    JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
+    JAVA_HOME=/etc/alternatives/java_sdk_1.8.0 \
+    RUBY_MAJOR_VERSION=2 \
+    RUBY_MINOR_VERSION=5
+    
+ENV RUBY_VERSION="${RUBY_MAJOR_VERSION}.${RUBY_MINOR_VERSION}" \
+    RUBY_SCL_NAME_VERSION="${RUBY_MAJOR_VERSION}${RUBY_MINOR_VERSION}"
+ENV RUBY_SCL="rh-ruby${RUBY_SCL_NAME_VERSION}" 
 
 #update PATH env var
 ENV PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NVM_DIR:/opt/gradle/gradle-$GRADLE_VERSION/bin
@@ -26,13 +32,19 @@ LABEL io.k8s.description="Platform for building slave android sdk image" \
 #system pakcages
 RUN yum remove -y zlib.i686 ruby ruby-devel
     # rmv
-RUN curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
-RUN curl -L get.rvm.io | bash -s stable
-RUN usermod -aG rvm $USER
-RUN source /etc/profile.d/rvm.sh
-RUN rvm reload
-RUN rvm requirements run 
+RUN yum install -y centos-release-scl-rh && \
+    yum-config-manager --add-repo https://cbs.centos.org/repos/sclo7-rh-ruby25-rh-candidate/x86_64/os/ && \
+    echo gpgcheck=0 >> /etc/yum.repos.d/cbs.centos.org_repos_sclo7-rh-ruby25-rh-candidate_x86_64_os_.repo && \
+    INSTALL_PKGS=" \
+    ${RUBY_SCL} \
+    ${RUBY_SCL}-ruby-devel \
+    ${RUBY_SCL}-rubygem-rake \
+    ${RUBY_SCL}-rubygem-bundler \
+    " && \
+        yum install -y --setopt=tsflags=nodocs ${INSTALL_PKGS} && \
+        yum -y clean all --enablerepo='*' && \
+        rpm -V ${INSTALL_PKGS} && ruby --version
+        
 RUN rvm install 2.6 && \
     yum update -y && \
     yum install -y \
