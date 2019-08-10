@@ -30,9 +30,8 @@ LABEL io.k8s.description="Platform for building slave android sdk image" \
       io.openshift.tags="jenkins-android-slave builder"
 
 #system pakcages
-RUN yum remove -y zlib.i686 ruby ruby-devel
-    # rmv
-RUN yum install -y centos-release-scl-rh && \
+RUN yum remove -y zlib.i686 && \
+    yum install -y centos-release-scl-rh && \
     yum-config-manager --add-repo https://cbs.centos.org/repos/sclo7-rh-ruby25-rh-candidate/x86_64/os/ && \
     echo gpgcheck=0 >> /etc/yum.repos.d/cbs.centos.org_repos_sclo7-rh-ruby25-rh-candidate_x86_64_os_.repo && \
     INSTALL_PKGS=" \
