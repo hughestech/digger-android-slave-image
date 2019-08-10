@@ -45,14 +45,9 @@ RUN yum install -y \
   yum install -y rh-ruby25 && \
   scl enable rh-ruby25 bash && \
   yum clean all && \
-  rm -rf /var/cache/yum
-
-#install nvm and nodejs
-
-
-# install nvm
-# https://github.com/creationix/nvm#install-script
-RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh | bash
+  rm -rf /var/cache/yum && \
+  ruby --version && \
+  curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh | bash
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
