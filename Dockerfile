@@ -43,6 +43,7 @@ RUN yum install -y \
   yum groupinstall -y "Development Tools" && \
   yum update -y && \
   yum install -y rh-ruby25 && \
+  scl enable rh-ruby25 bash && \
   yum clean all && \
   rm -rf /var/cache/yum
 
