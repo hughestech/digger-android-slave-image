@@ -28,8 +28,8 @@ RUN yum remove -y zlib.i686 ruby ruby-devel
     # rmv
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
-RUN curl -L get.rvm.io | bash -s stable
-RUN source /etc/profile.d/rvm.sh && rvm reload && rvm requirements run && rvm install 2.6 && \
+RUN curl -L get.rvm.io | bash -s stable && \
+    source /etc/profile.d/rvm.sh && rvm reload && rvm requirements run && rvm install 2.6 && \
     yum update -y && \
     yum install -y \
   centos-release-scl \
