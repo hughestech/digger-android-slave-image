@@ -24,7 +24,11 @@ LABEL io.k8s.description="Platform for building slave android sdk image" \
       io.openshift.tags="jenkins-android-slave builder"
 
 #system pakcages
-RUN yum remove -y zlib.i686 ruby && \
+RUN yum remove -y zlib.i686 ruby ruby-devel && \
+    # rmv
+    gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB && \
+    curl --silent -sSL https://get.rvm.io | bash -s stable && \
+
     yum update -y && \
     yum install -y \
   centos-release-scl \
@@ -42,9 +46,6 @@ RUN yum remove -y zlib.i686 ruby && \
   wget \
   expect \
   yum groupinstall -y "Development Tools" && \
-  yum update -y && \
-  yum install -y rh-ruby25 && \
-  scl enable rh-ruby25 bash && \
   yum clean all && \
   rm -rf /var/cache/yum && \
   ruby --version && \
