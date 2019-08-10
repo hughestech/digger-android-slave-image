@@ -29,7 +29,7 @@ RUN yum remove -y zlib.i686 ruby ruby-devel
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
 RUN curl -L get.rvm.io | bash -s stable
-RUN usermod -a -G rvm $USER
+RUN usermod -aG rvm $USER
 RUN source /etc/profile.d/rvm.sh
 RUN rvm reload
 RUN rvm requirements run 
