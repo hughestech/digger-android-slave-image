@@ -42,10 +42,9 @@ RUN yum remove -y zlib.i686 && \
     " && \
         yum install -y --setopt=tsflags=nodocs ${INSTALL_PKGS} && \
         yum -y clean all --enablerepo='*' && \
-        rpm -V ${INSTALL_PKGS} && ruby --version
+        rpm -V ${INSTALL_PKGS}
         
-RUN rvm install 2.6 && \
-    yum update -y && \
+RUN yum update -y && \
     yum install -y \
   centos-release-scl \
   #zlib.i686 --exclude zlib.otherarch \
