@@ -17,7 +17,7 @@ ENV ANDROID_SLAVE_SDK_BUILDER=1.0.0 \
     JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
 
 #update PATH env var
-ENV PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NVM_DIR:/opt/gradle/gradle-$GRADLE_VERSION/bin
+ENV PATH=$PATH:/usr/local/:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NVM_DIR:/opt/gradle/gradle-$GRADLE_VERSION/bin
 
 LABEL io.k8s.description="Platform for building slave android sdk image" \
       io.k8s.display-name="jenkins android sdk slave builder" \
