@@ -24,8 +24,7 @@ LABEL io.k8s.description="Platform for building slave android sdk image" \
       io.openshift.tags="jenkins-android-slave builder"
 
 #system pakcages
-RUN yum remove -y zlib.i686 && \
-    ruby && \
+RUN yum remove -y zlib.i686 ruby && \
     yum update -y && \
     yum install -y \
   centos-release-scl \
