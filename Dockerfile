@@ -44,6 +44,23 @@ RUN yum remove -y zlib.i686 && \
         yum -y clean all --enablerepo='*' && \
         rpm -V ${INSTALL_PKGS}
         
+RUN echo "Starting Installation..."
+
+# Install dependencies
+RUN yum install  -y  gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel ruby-devel libxml2 libxml2-devel libxslt libxslt-devel git
+
+# Install Ruby from rvm
+RUN \curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+#Enable rvm in current shell
+RUN source /usr/local/rvm/scripts/rvm
+
+#Install Bundler
+RUN gem install bundler
+
+RUN echo "Installation is completed now that was easy :)"
+RUN ruby --version
+        
 RUN yum update -y && \
     yum install -y \
   centos-release-scl \
