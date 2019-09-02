@@ -14,6 +14,14 @@ gpg2 --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A170
 #Enable rvm in current shell
 source /usr/local/rvm/scripts/rvm
 
+echo "view error log"
+cat /usr/local/rvm/log/_ruby-2.6.3/alias_create.log
+
+echo "gem version"
+gem update `gem outdated | cut -d ' ' -f 1`
+
+
+
 #Install Bundler
 gem install bundler
 
