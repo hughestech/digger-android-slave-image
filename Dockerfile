@@ -45,7 +45,7 @@ RUN yum remove -y zlib.i686 && \
         rpm -V ${INSTALL_PKGS}
         
 COPY scripts/rubyoncentos.sh /usr/local/bin/rubyoncentos.sh
-
+RUN ls /usr/local/bin/
 # Install ruby
 RUN ./usr/local/bin/rubyoncentos.sh
 
