@@ -48,10 +48,10 @@ RUN yum remove -y zlib.i686 && \
 
 # Install ruby
 ADD https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.gz .
-RUN ls -a && \
- tar -xzf ruby-2.6.4.tar.gz && \
- ls -a && \
+RUN tar -xzf ruby-2.6.4.tar.gz && \
  rm ruby-2.6.4.tar.gz &&  \
+ cd ruby-2.6.4  && \
+ ls -a && \ 
  ./configure && \ 
  make && \
  make install
