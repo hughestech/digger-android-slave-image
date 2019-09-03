@@ -81,9 +81,8 @@ RUN yum update -y && \
   yum groupinstall -y "Development Tools" && \
   yum clean all && \
   rm -rf /var/cache/yum && \
-  ruby --version
-  #&& \
-  #curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh | bash
+  ruby --version && \
+  curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh | bash
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
