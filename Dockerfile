@@ -47,8 +47,9 @@ RUN yum remove -y zlib.i686 && \
 COPY scripts/rubyoncentos.sh /usr/local/bin/rubyoncentos.sh
 
 # Install ruby
+RUN chmod +x /usr/local/bin/rubyoncentos.sh
 USER 1001
-RUN chmod +x /usr/local/bin/rubyoncentos.sh && /usr/local/bin/rubyoncentos.sh
+RUN  /usr/local/bin/rubyoncentos.sh
 USER root
 
 RUN ruby --version
