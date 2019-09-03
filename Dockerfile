@@ -132,7 +132,9 @@ RUN mkdir -p $HOME/.android && \
     # when the source becomes existent, it will just work.
     ln -s $ANDROID_HOME/android.debug $HOME/.android/debug.keystore  && \
     chown -R 1001:0 $HOME && \
-    chmod -R g+rw $HOME
+    chmod -R g+rw $HOME && \
+    chown -R 1001:0 /usr/local/lib/ruby/gems/2.6.0 && \
+    chmod -R g+rw /usr/local/lib/ruby/gems/2.6.0
 
 COPY scripts/run-jnlp.sh /usr/local/bin/run-jnlp.sh
 
