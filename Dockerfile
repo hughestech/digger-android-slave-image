@@ -48,11 +48,11 @@ RUN yum remove -y zlib.i686 && \
 
 # Install ruby
 ADD https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.gz ./
-RUN tar -xzf ruby-2.6.4.tar.gz \
- && rm ruby-2.6.4.tar.gz
- && ./configure
- && make
- && make install
+RUN tar -xzf ruby-2.6.4.tar.gz &&  \
+ ruby-2.6.4.tar.gz &&  \
+ ./configure && \ 
+ make && \
+ make install
 #RUN chmod +x /usr/local/bin/rubyoncentos.sh
 #USER 1001
 #RUN  /usr/local/bin/rubyoncentos.sh
